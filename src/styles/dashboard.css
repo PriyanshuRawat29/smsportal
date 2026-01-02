@@ -1,0 +1,288 @@
+:root {
+  /* PRIMARY */
+  --brand-red: rgb(230, 0, 0);
+  --brand-grey: rgb(84, 77, 78);
+  --brand-blue: rgb(0, 176, 202);
+
+  /* SECONDARY */
+  --brand-red-violet: rgb(154, 42, 0);
+  --brand-aubergine-dark: rgb(94, 39, 80);
+  --brand-aubergine: rgb(39, 78, 80);
+  --brand-spring-green: rgb(168, 180, 0);
+  --brand-lemon-yellow: rgb(254, 203, 0);
+  --brand-orange: rgb(235, 151, 0);
+  --brand-black: rgb(0, 0, 0);
+
+  /* UI */
+  --bg-light: #f4f6f8;
+  --card-bg: #ffffff;
+}
+
+
+.dashboard-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--brand-grey);
+}
+
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+
+
+/* Balance card should be bigger */
+.summary-grid .summary-card:last-child {
+  grid-column: span 2;
+}
+.summary-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.summary-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: var(--brand-red); /* default */
+}
+
+
+
+.summary-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-title {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.card-icon {
+  font-size: 22px;
+}
+
+.card-value {
+  margin-top: 10px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--brand-red);
+}
+
+/* Card Variants */
+.summary-card.sent::before {
+  background: var(--brand-blue);
+}
+
+.summary-card.delivered::before {
+  background: var(--brand-spring-green);
+}
+
+.summary-card.failed::before {
+  background: var(--brand-red);
+}
+
+.summary-card.campaigns::before {
+  background: var(--brand-orange);
+}
+
+.summary-card.balance::before {
+  background: var(--brand-lemon-yellow);
+}
+
+
+
+.skeleton-card {
+  height: 110px;
+  border-radius: 14px;
+  background: linear-gradient(
+    90deg,
+    #eeeeee 25%,
+    #f5f5f5 37%,
+    #eeeeee 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.chart-card {
+  margin-top: 32px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.chart-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.summary-card.balance {
+  background: linear-gradient(
+    135deg,
+    #fff7ed,
+    #ffffff
+  );
+}
+
+
+/* Charts Section */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.chart-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.chart-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #374151;
+}
+
+/* Revenue Date Range Filter */
+/* ===============================
+   Revenue Date Range (Improved)
+================================ */
+
+.date-filter {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 10px 10px;
+  box-shadow: 0 22px 28px rgba(0, 0, 0, 0.08);
+  margin-bottom: 15px;
+}
+
+/* Title */
+.date-filter-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 5px;
+}
+
+/* Controls */
+.date-filter-controls {
+  display: flex;
+  align-items: flex-start;   /* ✅ key fix */
+  gap: 28px;
+  flex-wrap: nowrap;
+}
+
+
+.apply-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.apply-label {
+  height: 18px; /* same height as Start/End Date labels */
+}
+
+
+/* Date Field */
+.date-field {
+  display: flex;
+  flex-direction: column;
+  width: 220px;          /* 👈 fixed width = clean alignment */
+}
+
+.date-field label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+/* Input */
+.date-field input {
+  height: 40px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+  background-color: #f9fafb;
+  transition: all 0.2s ease;
+}
+
+.date-field input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(154, 42, 0, 0.15);
+}
+
+/* Apply Button (Brand Aligned) */
+.apply-btn {
+  height: 60px;
+  padding: 5px 28px;
+  margin-left: 10px;
+
+
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    #7a2100
+  );
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.apply-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+}
+@media (max-width: 768px) {
+  .date-filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .apply-btn {
+    width: 100%;
+  }
+}

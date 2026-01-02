@@ -1,0 +1,110 @@
+/*.sidebar {
+  width: 220px;
+  background-color: var(--secondary-color);
+  height: calc(100vh - 60px);
+  padding: 20px 0;
+}
+
+.sidebar a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.sidebar a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar a.active {
+  background-color: var(--primary-color);
+  font-weight: bold;
+}*/
+.sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+
+  width: 64px; /* 👈 COLLAPSED DEFAULT */
+  height: calc(100vh - 60px);
+
+  background-color: #1f2937;
+  color: #fff;
+
+  padding-top: 16px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.sidebar:hover {
+  width: 220px;
+}
+
+
+.sidebar .text {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar:hover .text {
+  opacity: 1;
+}
+
+
+/* Links */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-link.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+.text {
+  white-space: nowrap;
+}
+
+/* Tooltip when collapsed */
+.sidebar.collapsed .sidebar-link {
+  position: relative;
+}
+
+.sidebar.collapsed .sidebar-link::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #111827;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.sidebar.collapsed .sidebar-link:hover::after {
+  opacity: 1;
+}
+/* When sidebar is collapsed, content aligns properly */
+

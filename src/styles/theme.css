@@ -1,0 +1,10 @@
+:root {
+  --primary-color: rgb(154, 42, 0);     /* Brand Red Violet */
+  --secondary-color: rgb(94, 39, 80);   /* Aubergine */
+
+  --success-color: rgb(168, 180, 0);
+  --error-color: rgb(230, 0, 0);
+
+  --font-family: 'Inter', sans-serif;
+  --border-radius: 6px;
+}
