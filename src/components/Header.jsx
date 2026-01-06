@@ -3,9 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 function Header() {
    const navigate = useNavigate();
+   const user = localStorage.getItem("loggedInUser");
+
 
   const handleLogout = () => {
-    navigate("/"); // go back to login
+    localStorage.removeItem("loggedInUser"); // 👈 clear session
+  navigate("/"); // go back to login
   };
   return (
     <div
@@ -36,7 +39,10 @@ function Header() {
 
 {/* User Info + Logout */}
 <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-  <span style={{ fontSize: 14 }}>Admin</span>
+  <span style={{ fontSize: 14 }}>
+  Welcome {user || "User"}
+</span>
+
 
   <button
     onClick={handleLogout}

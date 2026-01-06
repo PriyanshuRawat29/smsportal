@@ -159,8 +159,8 @@
 /* Charts Section */
 .charts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
+  gap: 0px;
   margin-top: 32px;
 }
 

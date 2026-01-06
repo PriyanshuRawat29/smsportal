@@ -9,6 +9,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginType, setLoginType] = useState("email"); // email | mobile
+const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -32,10 +33,12 @@ if (loginType === "email") {
     return;
   }
 
-  if (isValidEmail(username)) {
-    navigate("/dashboard");
-    return;
-  }
+if (isValidEmail(username)) {
+  localStorage.setItem("loggedInUser", username); // 👈 ADD THIS
+  navigate("/dashboard");
+  return;
+}
+
 
   setError("Enter a valid email address");
   return;
@@ -47,10 +50,12 @@ if (loginType === "email") {
     return;
   }
 
-  if (isValidSolomonNumber(username)) {
-    navigate("/dashboard");
-    return;
-  }
+if (isValidSolomonNumber(username)) {
+  localStorage.setItem("loggedInUser", "677" + username); // 👈 ADD THIS
+  navigate("/dashboard");
+  return;
+}
+
 
   setError("Enter a valid Solomon Islands mobile number (677xxxxxx)");
 }
@@ -115,7 +120,8 @@ if (loginType === "email") {
             </label>
 {loginType === "mobile" ? (
   <div className="mobile-inline">
-    <span className="mobile-prefix">677</span>
+   <span className="mobile-prefix mobile-code">+677</span>
+
 
     <input
       type="text"
@@ -145,12 +151,27 @@ if (loginType === "email") {
 
             {/* 🔹 Password */}
             <label className="login-label">Password *</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+       <div className="password-wrapper">
+  <input
+    type={showPassword ? "text" : "password"}
+    placeholder="Enter your password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+  />
+</div>
+
+<div className="show-password-row">
+  <label className="show-password-label">
+    <input
+      type="checkbox"
+      checked={showPassword}
+      onChange={(e) => setShowPassword(e.target.checked)}
+    />
+    Show password
+  </label>
+</div>
+
+
 
             <button type="submit" disabled={loading}>
               {loading ? "Logging in..." : "Login"}

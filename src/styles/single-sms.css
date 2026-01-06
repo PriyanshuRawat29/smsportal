@@ -1,0 +1,136 @@
+/* ===============================
+   SINGLE SMS FORM
+================================ */
+
+/* Main Card */
+.chart-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.form-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Inputs & Textarea */
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+  background-color: #f9fafb;
+  transition: all 0.2s ease;
+}
+
+.form-textarea {
+  resize: none;
+  min-height: 120px;
+}
+
+/* Focus */
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(154, 42, 0, 0.15);
+}
+
+/* Character Counter */
+.char-count {
+  text-align: right;
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+/* Button section */
+.sms-action {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+/* Info text */
+.sms-info {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Responsive (SAFE) */
+@media (max-width: 768px) {
+  .chart-card {
+    padding: 20px;
+  }
+
+  .sms-action {
+    justify-content: center;
+  }
+}
+
+/* ===== INLINE MOBILE NUMBER FIELD ===== */
+
+.mobile-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.mobile-prefix {
+  font-size: 16px;
+  
+  color: #111827;
+  min-width: 40px; /* keeps alignment clean */
+
+   position: relative;
+  top: -7px;
+}
+
+.mobile-number-input {
+  flex: 1;
+  padding: 15px 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #eef4ff;
+}
+
+.mobile-number-input:focus {
+  outline: none;
+  background-color: #fff;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(154, 42, 0, 0.15);
+}
+
+
+/* ===== MOBILE COUNTRY CODE (SAFE & ISOLATED) ===== */
+
+.mobile-code {
+  flex: 0;
+  /*height: 15px;*/
+  padding: 12px 0px;
+  border: 2px solid #dcdcdc;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #eef4ff;
+  position: relative;
+  top: -7px;
+}

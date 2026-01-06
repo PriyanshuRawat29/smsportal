@@ -78,25 +78,36 @@ function Dashboard() {
       </div>
 
       {!loading && (
-        <div className="chart-card">
-          <h3 className="chart-title">SMS Delivery Overview</h3>
+  <>
+    {/* FULL WIDTH BAR CHART */}
+    <div className="chart-card full-width">
+      <h3 className="chart-title">SMS Delivery Overview</h3>
 
-          <ResponsiveContainer width="100%" height={260}>
-            <BarChart data={chartData}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Bar
-                dataKey="value"
-                fill="var(--primary-color)"
-                radius={[6, 6, 0, 0]}
-              />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-        
-      )}
+      <ResponsiveContainer width="100%" height={220}>
+        <BarChart
+          data={chartData}
+          margin={{ top: 10, right: 20, left: 0, bottom: 0 }}
+        >
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Bar
+            dataKey="value"
+            fill="var(--brand-red-violet)"
+            barSize={48}
+            radius={[6, 6, 0, 0]}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+
+    {/* PIE CHARTS ROW */}
+    <div className="charts-grid">
       <DistributionCharts />
+    </div>
+  </>
+)}
+
       {/* Top 10 SMS Users (UI Only) */}
 <div className="table-card">
   <h3 className="table-title">Top 10 SMS Users</h3>

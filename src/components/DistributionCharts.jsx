@@ -27,12 +27,42 @@ const campaignData = [
   { name: "Inactive", value: 19, fill: BRAND_COLORS.grey }
 ];
 
+/* ✅ CUSTOM PIE LABEL (REQUIRED) */
+const renderPieLabel = ({
+  cx,
+  cy,
+  midAngle,
+  outerRadius,
+  name,
+  value
+}) => {
+  const RADIAN = Math.PI / 180;
+  const radius = outerRadius + 12;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text
+      x={x}
+      y={y}
+      fill="#374151"
+      textAnchor={x > cx ? "start" : "end"}
+      dominantBaseline="central"
+      fontSize={12}
+      fontWeight={500}
+    >
+      {`${name}: ${value}`}
+    </text>
+  );
+};
+
+/* ✅ CHART CARD */
 function ChartBox({ title, data }) {
   return (
     <div className="chart-card">
       <h4 className="chart-title">{title}</h4>
 
-      <ResponsiveContainer width="100%" height={260}>
+      <ResponsiveContainer width="100%" height={220}>
         <PieChart>
           <Pie
             data={data}
@@ -40,21 +70,32 @@ function ChartBox({ title, data }) {
             nameKey="name"
             cx="50%"
             cy="50%"
-            outerRadius={90}
-            label
+            outerRadius={75}
+            paddingAngle={2}
+            label={renderPieLabel}
+            labelLine={{ stroke: "#9ca3af", strokeWidth: 1 }}
           >
             {data.map((entry, index) => (
               <Cell key={index} fill={entry.fill} />
             ))}
           </Pie>
 
-          <Tooltip />
+          <Tooltip
+            formatter={(value, name) => [`${value}`, name]}
+            contentStyle={{
+              borderRadius: "8px",
+              border: "none",
+              boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+              fontSize: "13px"
+            }}
+          />
         </PieChart>
       </ResponsiveContainer>
     </div>
   );
 }
 
+/* ✅ EXPORT */
 export default function DistributionCharts() {
   return (
     <div className="charts-grid">

@@ -14,12 +14,15 @@ function Signup() {
 const [firstName, setFirstName] = useState("");
 const [lastName, setLastName] = useState("");
 const [address, setAddress] = useState("");
+const [showPassword, setShowPassword] = useState(false);
+const [success, setSuccess] = useState("");
+
 
   const isValidEmail = (v) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
   const isValidSolomonMobile = (v) =>
-    /^\d{5,7}$/.test(v);
+    /^\d{7}$/.test(v);
 
   const isValidPassword = (password) => {
   return (
@@ -71,8 +74,14 @@ if (!address.trim()) {
     }
 
     // 🔐 API call will be added later
-    alert("Signup successful");
-    navigate("/");
+ setSuccess("Signup successful");
+
+// optional auto-redirect after 1.5s
+setError("");
+setTimeout(() => {
+  navigate("/");
+}, 5000);
+
   };
 
   return (
@@ -142,7 +151,7 @@ if (!address.trim()) {
           {/* Email / Mobile */}
                 {loginType === "mobile" ? (
   <div className="mobile-inline">
-    <span className="mobile-prefix">677</span>
+    <span className="mobile-prefix mobile-code">+677</span>
 
     <input
       type="text"
@@ -166,22 +175,40 @@ if (!address.trim()) {
   />
 )}
 
+    {/* Password */}
+<label className="login-label">Create Password *</label>
+<div className="password-wrapper">
+  <input
+    type={showPassword ? "text" : "password"}
+    placeholder="Create password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+  />
+</div>
 
-          {/* Password */}
-          <input
-            type="password"
-            placeholder="Create password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+{/* Confirm Password */}
+<label className="login-label">Confirm Password *</label>
+<div className="password-wrapper">
+  <input
+    type={showPassword ? "text" : "password"}
+    placeholder="Confirm password"
+    value={confirmPassword}
+    onChange={(e) => setConfirmPassword(e.target.value)}
+  />
+</div>
 
-          {/* Confirm Password */}
-          <input
-            type="password"
-            placeholder="Confirm password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+{/* Show password checkbox */}
+<div className="show-password-row">
+  <label className="show-password-label">
+    <input
+      type="checkbox"
+      checked={showPassword}
+      onChange={(e) => setShowPassword(e.target.checked)}
+    />
+    Show password
+  </label>
+</div>
+
 
           <button onClick={handleSignup}>
             Sign Up
@@ -197,6 +224,13 @@ if (!address.trim()) {
           </div>
 
           {error && <div className="login-error">{error}</div>}
+          
+          {success && (
+  <div className="login-success">
+    {success}
+  </div>
+)}
+
         </div>
       </div>
     </div>

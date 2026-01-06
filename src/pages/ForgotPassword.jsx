@@ -17,6 +17,8 @@ const [canResend, setCanResend] = useState(false);
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
 
 
   const [loading, setLoading] = useState(false);
@@ -181,7 +183,7 @@ if (!isValidPassword(newPassword)) {
 
                     {loginType === "mobile" ? (
   <div className="mobile-inline">
-    <span className="mobile-prefix">677</span>
+    <span className="mobile-prefix mobile-code">+677</span>
 
     <input
       type="text"
@@ -246,21 +248,42 @@ if (!isValidPassword(newPassword)) {
 
 
           {/* STEP 3: RESET PASSWORD */}
-         {step === 3 && (
+ 
+{step === 3 && (
   <>
-    <input
-      type="password"
-      placeholder="Enter new password"
-      value={newPassword}
-      onChange={(e) => setNewPassword(e.target.value)}
-    />
+    {/* New Password */}
+    <label className="login-label">New Password *</label>
+    <div className="password-wrapper">
+      <input
+        type={showPassword ? "text" : "password"}
+        placeholder="Enter new password"
+        value={newPassword}
+        onChange={(e) => setNewPassword(e.target.value)}
+      />
+    </div>
 
-    <input
-      type="password"
-      placeholder="Confirm new password"
-      value={confirmPassword}
-      onChange={(e) => setConfirmPassword(e.target.value)}
-    />
+    {/* Confirm Password */}
+    <label className="login-label">Confirm Password *</label>
+    <div className="password-wrapper">
+      <input
+        type={showPassword ? "text" : "password"}
+        placeholder="Confirm new password"
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+      />
+    </div>
+
+    {/* Show password checkbox */}
+    <div className="show-password-row">
+      <label className="show-password-label">
+        <input
+          type="checkbox"
+          checked={showPassword}
+          onChange={(e) => setShowPassword(e.target.checked)}
+        />
+        Show password
+      </label>
+    </div>
 
     <button onClick={handleResetPassword}>
       Reset Password
