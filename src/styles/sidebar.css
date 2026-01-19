@@ -21,37 +21,32 @@
   background-color: var(--primary-color);
   font-weight: bold;
 }*/
+/* Sidebar: Default Expanded */
 .sidebar {
   position: fixed;
   top: 60px;
   left: 0;
-
-  width: 64px; /* 👈 COLLAPSED DEFAULT */
+  width: 260px;
+  /* Expanded by default */
   height: calc(100vh - 60px);
-
   background-color: #1f2937;
   color: #fff;
-
   padding-top: 16px;
   transition: width 0.3s ease;
   overflow: hidden;
   z-index: 1000;
 }
 
-.sidebar:hover {
-  width: 220px;
+.submenu {
+  padding-left: 36px;
+  /* Indent sub-modules */
 }
 
-
+/* Text: Default Visible */
 .sidebar .text {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.2s ease;
 }
-
-.sidebar:hover .text {
-  opacity: 1;
-}
-
 
 /* Links */
 .sidebar-link {
@@ -81,12 +76,41 @@
   white-space: nowrap;
 }
 
-/* Tooltip when collapsed */
-.sidebar.collapsed .sidebar-link {
+/* Main Content: Default Pushed */
+.main-content {
+  margin-left: 260px;
+  transition: margin-left 0.3s ease;
+}
+
+/* 
+   SHRINK LOGIC: 
+   When hovering main content, shrink the sidebar.
+   Uses :has() pseudo-class.
+*/
+body:has(.main-content:hover) .sidebar {
+  width: 64px;
+}
+
+body:has(.main-content:hover) .sidebar .text {
+  opacity: 0;
+}
+
+/* Hide submenus completely when shrunk */
+body:has(.main-content:hover) .sidebar .submenu {
+  display: none;
+}
+
+
+body:has(.main-content:hover) .main-content {
+  margin-left: 64px;
+}
+
+/* Tooltip: Only show when shrunk */
+body:has(.main-content:hover) .sidebar-link {
   position: relative;
 }
 
-.sidebar.collapsed .sidebar-link::after {
+body:has(.main-content:hover) .sidebar-link::after {
   content: attr(data-tooltip);
   position: absolute;
   left: 70px;
@@ -103,8 +127,6 @@
   white-space: nowrap;
 }
 
-.sidebar.collapsed .sidebar-link:hover::after {
+body:has(.main-content:hover) .sidebar-link:hover::after {
   opacity: 1;
 }
-/* When sidebar is collapsed, content aligns properly */
-

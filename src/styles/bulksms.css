@@ -1,0 +1,335 @@
+.bulk-wrapper {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Main Card */
+.bulk-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    /* Updated shadow */
+    padding: 32px;
+    /* Increased padding */
+}
+
+/* Copied Form Styles from SingleSms.css */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-label {
+    font-size: 16px;
+    /* Increased */
+    font-weight: 700;
+    /* Bold */
+    color: #1f2937;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 14px;
+    /* Increased padding */
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 16px;
+    /* Increased to 16px */
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    min-height: 54px;
+    /* Increased height */
+    color: #111827;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color, #e14e0e);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(225, 78, 14, 0.15);
+}
+
+.upload-area {
+    border: 2px dashed #9ca3af;
+    border-radius: 12px;
+    padding: 48px;
+    /* Increased padding */
+    text-align: center;
+    background-color: #f9fafb;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 24px;
+}
+
+.upload-area:hover {
+    border-color: var(--primary-color, #9a2a00);
+    background-color: #fff7ed;
+}
+
+.upload-icon {
+    width: 48px;
+    height: 48px;
+    color: #9ca3af;
+    margin-bottom: 12px;
+}
+
+.upload-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.upload-hint {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: #f3f4f6;
+    padding: 16px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color, #9a2a00);
+}
+
+.char-count {
+    text-align: right;
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 8px;
+}
+
+/* Scheduler */
+.schedule-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+    align-items: center;
+}
+
+.schedule-row .form-input {
+    flex: 1;
+    color: #374151;
+    font-family: inherit;
+    margin: 0;
+}
+
+/* Time Picker Custom */
+.time-picker-group {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Better spacing */
+    transform: translateY(-4px);
+}
+
+.time-select {
+    flex: 1 !important;
+    min-width: 80px;
+    /* Increased width */
+    padding: 0 12px !important;
+    text-align: center;
+    appearance: none;
+    height: 54px;
+    /* Match new height */
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    background-color: #fff;
+    font-size: 16px;
+    /* Larger font */
+}
+
+.time-select:focus {
+    border-color: var(--primary-color, #e14e0e);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(225, 78, 14, 0.15);
+}
+
+.time-period-select {
+    width: 90px;
+    /* Increased width */
+    flex: 0 0 90px !important;
+    margin-left: 0;
+    height: 54px;
+    /* Match new height */
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    padding: 0 8px !important;
+    font-size: 16px;
+    /* Larger font */
+}
+
+.time-period-select:focus {
+    border-color: var(--primary-color, #e14e0e);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(225, 78, 14, 0.15);
+}
+
+.time-separator {
+    font-weight: 700;
+    color: #4b5563;
+    margin: 0 6px;
+    font-size: 20px;
+    margin-top: -2px;
+}
+
+/* Status Message */
+.status-message {
+    margin-top: 24px;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: #ecfdf5;
+    color: #047857;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid #d1fae5;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.message-area {
+    margin-bottom: 24px;
+}
+
+.message-label {
+    display: block;
+    font-size: 16px;
+    /* Larger */
+    font-weight: 700;
+    /* Bold */
+    color: #1f2937;
+    margin-bottom: 8px;
+}
+
+.message-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    min-height: 140px;
+    /* Larger */
+    font-family: inherit;
+    font-size: 16px;
+    /* Larger */
+    resize: vertical;
+    transition: all 0.2s ease;
+}
+
+.message-input:focus {
+    outline: none;
+    border-color: var(--primary-color, #e14e0e);
+    box-shadow: 0 0 0 4px rgba(225, 78, 14, 0.15);
+}
+
+.send-btn {
+    width: 100%;
+    padding: 16px;
+    /* Larger button */
+    background: linear-gradient(135deg, var(--primary-color, #9a2a00), #7a2100);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    /* Larger font */
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.send-btn:hover {
+    transform: translateY(-1px);
+}
+
+.send-btn:active {
+    transform: translateY(0);
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #059669;
+    font-weight: 500;
+}
+
+/* Adjusting SMS Type Text Position (Copied from single-sms.css) */
+.normal-sms-text,
+.flash-sms-text {
+    font-size: 16px;
+    /* Larger text */
+    margin-left: 4px;
+    transform: translateY(-3px);
+    font-weight: 500;
+    color: #1f2937;
+}
+
+/* Remove File Button */
+.remove-file {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    line-height: 1;
+    margin-left: 10px;
+    color: #374151;
+    transition: background-color 0.2s;
+}
+
+.remove-file:hover {
+    background: rgba(0, 0, 0, 0.2);
+    color: #111827;
+}
+
+.file-info {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #059669;
+    font-weight: 500;
+    background-color: #ecfdf5;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #d1fae5;
+}

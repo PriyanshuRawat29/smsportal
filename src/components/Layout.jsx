@@ -10,9 +10,10 @@ function Layout({ children }) {
       <Sidebar />
 
       <div
+        className="main-content"
         style={{
           marginTop: 60,
-          marginLeft: 64,   // ✅ ALWAYS collapsed width
+          /* marginLeft is handled in CSS */
           padding: 20,
           minHeight: "calc(100vh - 100px)",
           overflowY: "auto",

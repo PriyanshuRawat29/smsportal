@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import "../styles/login.css";
+import "../styles/forgot-password.css";
 import logo from "../assets/logos/logo-primary.png";
+import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 
 
@@ -9,20 +10,22 @@ function ForgotPassword() {
 
   // Steps: 1 = input, 2 = otp, 3 = reset password
   const [step, setStep] = useState(1);
-const [timer, setTimer] = useState(30);
-const [canResend, setCanResend] = useState(false);
+  const [timer, setTimer] = useState(30);
+  const [canResend, setCanResend] = useState(false);
 
-  const [loginType, setLoginType] = useState("email"); // email | mobile
+  const [loginType, setLoginType] = useState("mobile"); // email | mobile
   const [value, setValue] = useState("");
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
 
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   /* =========================
      VALIDATIONS
@@ -37,33 +40,33 @@ const [canResend, setCanResend] = useState(false);
   const isValidOtp = (v) =>
     /^\d{6}$/.test(v);
   const isValidPassword = (password) => {
-  return (
-    password.length >= 6 &&
-    /[A-Za-z]/.test(password) && // at least one letter
-    /\d/.test(password)          // at least one number
-  );
-};
+    return (
+      password.length >= 6 &&
+      /[A-Za-z]/.test(password) && // at least one letter
+      /\d/.test(password)          // at least one number
+    );
+  };
 
 
   /* =========================
      HANDLERS
   ========================= */
   useEffect(() => {
-  if (step !== 2 || canResend) return;
+    if (step !== 2 || canResend) return;
 
-  const interval = setInterval(() => {
-    setTimer((prev) => {
-      if (prev === 1) {
-        clearInterval(interval);
-        setCanResend(true);
-        return 0;
-      }
-      return prev - 1;
-    });
-  }, 1000);
+    const interval = setInterval(() => {
+      setTimer((prev) => {
+        if (prev === 1) {
+          clearInterval(interval);
+          setCanResend(true);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
 
-  return () => clearInterval(interval);
-}, [step, canResend]);
+    return () => clearInterval(interval);
+  }, [step, canResend]);
 
 
 
@@ -90,8 +93,8 @@ const [canResend, setCanResend] = useState(false);
 
       // 🔐 API CALL TO SEND OTP (EMAIL / SMS)
       setStep(2);
-setTimer(30);
-setCanResend(false);
+      setTimer(30);
+      setCanResend(false);
 
     }, 600);
   };
@@ -108,31 +111,33 @@ setCanResend(false);
     setStep(3);
   };
 
-const handleResetPassword = () => {
-  setError("");
+  const handleResetPassword = () => {
+    setError("");
 
-  if (!newPassword || !confirmPassword) {
-    setError("Both password fields are required");
-    return;
-  }
+    if (!newPassword || !confirmPassword) {
+      setError("Both password fields are required");
+      return;
+    }
 
-if (!isValidPassword(newPassword)) {
-  setError(
-    "Password must be at least 6 characters and contain letters and numbers"
-  );
-  return;
-}
+    if (!isValidPassword(newPassword)) {
+      setError(
+        "Password must be at least 6 characters and contain letters and numbers"
+      );
+      return;
+    }
 
 
-  if (newPassword !== confirmPassword) {
-    setError("Passwords do not match");
-    return;
-  }
+    if (newPassword !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
 
-  // 🔐 API CALL TO RESET PASSWORD (later)
-  alert("Password reset successful");
-  navigate("/");
-};
+    // 🔐 API CALL TO RESET PASSWORD (later)
+    setSuccess("Password reset successful");
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
+  };
 
 
   /* =========================
@@ -150,10 +155,11 @@ if (!isValidPassword(newPassword)) {
 
           <div className="login-title">Forgot Password</div>
 
+
           {/* STEP 1: EMAIL / MOBILE INPUT */}
           {step === 1 && (
             <>
-              <div className="login-type">
+              {/* <div className="login-type">
                 <label>
                   <input
                     type="radio"
@@ -179,33 +185,33 @@ if (!isValidPassword(newPassword)) {
                   />
                   Mobile Number
                 </label>
+              </div> */}
+
+              {/* {loginType === "mobile" ? ( */}
+              <div className="mobile-inline">
+                <span className="mobile-prefix mobile-code">+677</span>
+
+                <input
+                  type="text"
+                  className="mobile-inline-input"
+                  placeholder="Enter mobile number"
+                  value={value}
+                  onChange={(e) => {
+                    const v = e.target.value;
+                    if (!/^\d*$/.test(v)) return;
+                    if (v.length > 7) return;
+                    setValue(v);
+                  }}
+                />
               </div>
-
-                    {loginType === "mobile" ? (
-  <div className="mobile-inline">
-    <span className="mobile-prefix mobile-code">+677</span>
-
-    <input
-      type="text"
-      className="mobile-inline-input"
-      placeholder="Enter mobile number"
-      value={value}
-      onChange={(e) => {
-        const v = e.target.value;
-        if (!/^\d*$/.test(v)) return;
-        if (v.length > 7) return;
-        setValue(v);
-      }}
-    />
-  </div>
-) : (
-  <input
-    type="text"
-    placeholder="Enter your email"
-    value={value}
-    onChange={(e) => setValue(e.target.value)}
-  />
-)}
+              {/* ) : (
+                <input
+                  type="text"
+                  placeholder="Enter your email"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                />
+              )} */}
 
 
               <button onClick={handleSendOtp} disabled={loading}>
@@ -215,87 +221,97 @@ if (!isValidPassword(newPassword)) {
           )}
 
           {/* STEP 2: OTP */}
-{step === 2 && (
-  <>
-    <input
-      type="text"
-      placeholder="Enter 6-digit OTP"
-      value={otp}
-      maxLength={6}
-      onChange={(e) => setOtp(e.target.value)}
-    />
+          {step === 2 && (
+            <>
+              <input
+                type="text"
+                placeholder="Enter 6-digit OTP"
+                value={otp}
+                maxLength={6}
+                onChange={(e) => setOtp(e.target.value)}
+              />
 
-    <button onClick={handleVerifyOtp}>
-      Verify OTP
-    </button>
+              <button onClick={handleVerifyOtp}>
+                Verify OTP
+              </button>
 
-    <div style={{ marginTop: 12, textAlign: "center", fontSize: 13 }}>
-      {canResend ? (
-        <span
-          className="link-button"
-          onClick={handleSendOtp}
-        >
-          Resend OTP
-        </span>
-      ) : (
-        <span style={{ color: "#6b7280" }}>
-          Resend OTP in {timer}s
-        </span>
-      )}
-    </div>
-  </>
-)}
+              <div style={{ marginTop: 12, textAlign: "center", fontSize: 13 }}>
+                {canResend ? (
+                  <span
+                    className="link-button"
+                    onClick={handleSendOtp}
+                  >
+                    Resend OTP
+                  </span>
+                ) : (
+                  <span style={{ color: "#6b7280" }}>
+                    Resend OTP in {timer}s
+                  </span>
+                )}
+              </div>
+            </>
+          )}
 
 
           {/* STEP 3: RESET PASSWORD */}
- 
-{step === 3 && (
-  <>
-    {/* New Password */}
-    <label className="login-label">New Password *</label>
-    <div className="password-wrapper">
-      <input
-        type={showPassword ? "text" : "password"}
-        placeholder="Enter new password"
-        value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
-      />
-    </div>
 
-    {/* Confirm Password */}
-    <label className="login-label">Confirm Password *</label>
-    <div className="password-wrapper">
-      <input
-        type={showPassword ? "text" : "password"}
-        placeholder="Confirm new password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-      />
-    </div>
+          {step === 3 && (
+            <>
+              {/* New Password */}
+              <label className="login-label">New Password *</label>
+              <div className="password-wrapper">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter new password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+                <span
+                  className="password-toggle-icon"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" /><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" /><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7c.44 0 .88-.03 1.31-.09" /><path d="m2 2 20 20" /></svg>
+                  )}
+                </span>
+              </div>
 
-    {/* Show password checkbox */}
-    <div className="show-password-row">
-      <label className="show-password-label">
-        <input
-          type="checkbox"
-          checked={showPassword}
-          onChange={(e) => setShowPassword(e.target.checked)}
-        />
-        Show password
-      </label>
-    </div>
+              {/* Confirm Password */}
+              <label className="login-label">Confirm Password *</label>
+              <div className="password-wrapper">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="Confirm new password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <span
+                  className="password-toggle-icon"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" /><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" /><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7c.44 0 .88-.03 1.31-.09" /><path d="m2 2 20 20" /></svg>
+                  )}
+                </span>
+              </div>
 
-    <button onClick={handleResetPassword}>
-      Reset Password
-    </button>
-  </>
-)}
+              <button onClick={handleResetPassword}>
+                Reset Password
+              </button>
+            </>
+          )}
 
 
           {error && <div className="login-error">{error}</div>}
+          {success && <div className="login-success" style={{ color: "green", marginTop: "10px", textAlign: "center", fontWeight: "bold" }}>{success}</div>}
 
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

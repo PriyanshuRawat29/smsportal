@@ -1,13 +1,21 @@
 .login-wrapper {
   height: 100vh;
   display: flex;
+  flex-direction: column;
+  /* Stack children vertically */
   align-items: center;
   justify-content: center;
-  background-color: #f4f6f8;
+  /* background-color: #f4f6f8; */
+  background-image: url('../assets/images/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .login-right {
   width: 100%;
+  flex: 1;
+  /* Take up remaining space */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,7 +24,10 @@
 /* Login card */
 .login-card {
   width: 380px;
-  background: rgba(255, 255, 255, 0.92);
+  background: #FFF3E6 !important;
+  /* Cream color */
+  color: #1f2937;
+  /* Dark text */
   padding: 36px;
   border-radius: 12px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
@@ -46,6 +57,7 @@
   font-size: 13px;
   font-weight: 500;
   color: #374151;
+  /* Dark label */
   margin-bottom: 6px;
   display: block;
 }
@@ -53,6 +65,8 @@
 /* Inputs */
 .login-card input {
   width: 100%;
+  box-sizing: border-box;
+  /* Fix width overflow locally */
   padding: 12px 14px;
   margin-bottom: 18px;
   border: 1px solid #dcdcdc;
@@ -79,7 +93,8 @@
 .login-type {
   display: flex;
   align-items: center;
-  gap: 28px;          /* space between Email & Mobile */
+  gap: 28px;
+  /* space between Email & Mobile */
   margin-bottom: 14px;
 }
 
@@ -89,6 +104,7 @@
   font-size: 14px;
   font-weight: 500;
   color: #111827;
+  /* Dark text */
   cursor: pointer;
   white-space: nowrap;
 }
@@ -105,11 +121,9 @@
 .login-card button {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(
-    135deg,
-    var(--primary-color),
-    #7a2100
-  );
+  background: linear-gradient(135deg,
+      var(--primary-color),
+      #7a2100);
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -194,10 +208,43 @@
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Password Wrapper & Logic */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  padding-right: 40px;
+  /* space for icon */
+}
+
+.password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+  /* Ensure it sits above the input */
+  z-index: 2;
+  /* Adjust top slightly if input has margin-bottom */
+  margin-top: -9px;
+}
+
+.password-toggle-icon:hover {
+  color: var(--primary-color);
 }
 
 /* ===== INLINE MOBILE NUMBER FIELD ===== */
@@ -205,71 +252,138 @@
 .mobile-inline {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .mobile-prefix {
-  font-size: 16px;
-  
+  font-size: 20px;
   color: #111827;
-  min-width: 40px; /* keeps alignment clean */
-
-   position: relative;
-  top: -7px;
+  min-width: 55px;
+  /* Sits nicely as a box */
+  height: 20px;
+  /* Match input height */
+  display: flex;
+  /* Centers text vertically/horizontally */
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  /* Match input background */
+  border: 1px solid #dcdcdc;
+  /* Match input border */
+  border-radius: 8px;
+  font-weight: 500;
 }
 
+/* Mobile Input Field */
 .mobile-inline-input {
   flex: 1;
-  padding: 15px 14px;
+  height: 48px;
+  /* Match height of prefix */
+  padding: 0 16px;
+  /* Vertical centering handled by height/flex */
   border: 1px solid #dcdcdc;
   border-radius: 8px;
-  font-size: 14px;
-  background-color: #eef4ff;
+  font-size: 15px;
+  font-family: inherit;
+  background-color: #ffffff;
+  /* White bg for pro feel */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .mobile-inline-input:focus {
   outline: none;
   background-color: #fff;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(154, 42, 0, 0.15);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+  /* More subtle primary shadow */
 }
 
-
-/* ===== MOBILE COUNTRY CODE (SAFE & ISOLATED) ===== */
-
-.mobile-code {
-  flex: 0;
-  /*height: 15px;*/
-  padding: 12px 0px;
-  border: 1px solid #dcdcdc;
-  border-radius: 8px;
-  font-size: 14px;
-  background-color: #eef4ff;
-  position: relative;
-  top: -8.5px;
+/* Placeholder styling for professionalism */
+.mobile-inline-input::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
 }
 
-/* Make input match perfectly */
 /* ===== SHOW PASSWORD (FINAL PROFESSIONAL STYLE) ===== */
 
 .show-password-row {
-  margin-top: -8px;     /* pulls it closer to input */
-  margin-bottom: 16px;  /* space before Login button */
+  margin-top: -8px;
+  /* pulls it closer to input */
+  margin-bottom: 16px;
+  /* space before Login button */
 }
 
 .show-password-label {
-  display: inline-flex;     /* NOT flex (important) */
+  display: inline-flex;
+  /* NOT flex (important) */
   align-items: center;
   gap: 6px;
   font-size: 13px;
   color: #374151;
+  /* Dark text */
   cursor: pointer;
 }
 
-.show-password-label input {
-  width: 14px;
-  height: 14px;
-  margin: 0;               /* removes default browser spacing */
+/* ===== AUTH TABS (PASSWORD / MPIN) ===== */
+.auth-tabs {
+  display: flex;
+  background-color: #f3f4f6;
+  /* Light bg */
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.auth-tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  /* Gray text */
   cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.auth-tab.active {
+  background-color: #ffffff;
+  color: var(--primary-color);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.auth-tab:hover:not(.active) {
+  color: #374151;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== MPIN INPUT ===== */
+.mpin-input {
+  letter-spacing: 0.5em;
+  /* Spacing for the dots/numbers */
+  font-size: 24px !important;
+  /* Larger for better visibility */
+  text-align: center;
+  /* Center the MPIN */
+  font-family: monospace;
+  /* Monospace for alignment */
+  font-weight: 700;
+  color: #1f2937;
+  padding-left: 20px !important;
+  /* Offset letter spacing visually */
+}
+
+.mpin-input::placeholder {
+  letter-spacing: 0;
+  /* Reset spacing for placeholder */
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 14px;
+  color: #9ca3af;
 }

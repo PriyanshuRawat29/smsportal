@@ -3,13 +3,19 @@
 ================================ */
 
 /* Main Card */
+.single-wrapper {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .chart-card {
   background: #ffffff;
-  border-radius: 16px;
-  padding: 24px 28px;
+  border-radius: 12px;
+  padding: 24px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  max-width: 900px;
-  margin: 0 auto;
+  /* Kept original shadow but adjusted radius to match new modern look if needed, staying close to original intent */
+  /* max-width removed here because wrapper handles it */
 }
 
 /* Form Group */
@@ -19,10 +25,12 @@
 
 /* Labels */
 .form-label {
-  font-size: 13px;
-  font-weight: 500;
-  color: #374151;
-  margin-bottom: 6px;
+  font-size: 16px;
+  /* Increased from 13px */
+  font-weight: 700;
+  /* Bolder */
+  color: #1f2937;
+  margin-bottom: 8px;
   display: block;
 }
 
@@ -30,26 +38,33 @@
 .form-input,
 .form-textarea {
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px 14px;
   border-radius: 10px;
   border: 1px solid #d1d5db;
-  font-size: 13px;
-  background-color: #f9fafb;
+  font-size: 16px;
+  /* Increased to 16px */
+  background-color: #ffffff;
   transition: all 0.2s ease;
+  min-height: 54px;
+  /* Increased height */
+  color: #111827;
+  box-sizing: border-box;
 }
 
 .form-textarea {
-  resize: none;
-  min-height: 120px;
+  resize: vertical;
+  min-height: 140px;
+  /* Larger textarea */
 }
 
 /* Focus */
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: var(--primary-color, #e14e0e);
   background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(154, 42, 0, 0.15);
+  box-shadow: 0 0 0 4px rgba(225, 78, 14, 0.15);
+  /* Larger shadow */
 }
 
 /* Character Counter */
@@ -85,52 +100,257 @@
   }
 }
 
-/* ===== INLINE MOBILE NUMBER FIELD ===== */
 
-.mobile-field {
+/* ===== RECIPIENTS (This is new) ===== */
+.recipients-container {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.recipient-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.recipient-chip {
+  display: inline-flex;
+  align-items: center;
+  background-color: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #3730a3;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.chip-remove {
+  background: none;
+  border: none;
+  color: #6366f1;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 8px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
 }
 
-.mobile-prefix {
-  font-size: 16px;
-  
+.chip-remove:hover {
+  color: #4338ca;
+}
+
+/* ===== NEW MOBILE FIELD ROW ===== */
+
+.mobile-field-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobile-field-input-group {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobile-prefix-box {
+  font-size: 20px;
   color: #111827;
-  min-width: 40px; /* keeps alignment clean */
-
-   position: relative;
-  top: -7px;
+  min-width: 65px;
+  /* Wider */
+  /* Sits nicely as a box */
+  height: 54px;
+  /* Match new input height */
+  /* Match input height */
+  display: flex;
+  /* Centers text vertically/horizontally */
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  /* Match input background */
+  border: 1px solid #dcdcdc;
+  /* Match input border */
+  border-radius: 10px;
+  font-weight: 600;
+  transform: translateY(-4px);
 }
 
+/* Update Input to match prefix height */
 .mobile-number-input {
   flex: 1;
-  padding: 15px 14px;
+  height: 54px;
+  /* Increased height */
+  /* Match height of prefix */
+  padding: 0 16px;
+  /* Vertical centering handled by height/flex */
   border: 1px solid #dcdcdc;
-  border-radius: 8px;
-  font-size: 14px;
-  background-color: #eef4ff;
+  border-radius: 10px;
+  font-size: 16px;
+  /* Larger font */
+  font-family: inherit;
+  background-color: #ffffff;
+  /* White bg for pro feel */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .mobile-number-input:focus {
   outline: none;
-  background-color: #fff;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(154, 42, 0, 0.15);
+  border-color: var(--primary-color, #e14e0e);
+  box-shadow: 0 0 0 4px rgba(225, 78, 14, 0.15);
 }
 
+.add-number-btn {
+  height: 54px;
+  /* Match new height */
+  padding: 0 24px;
+  background-color: var(--primary-color, #e14e0e);
+  /* Fallback color */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  transform: translateY(-4px);
+}
 
-/* ===== MOBILE COUNTRY CODE (SAFE & ISOLATED) ===== */
+.add-number-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
 
-.mobile-code {
-  flex: 0;
-  /*height: 15px;*/
-  padding: 12px 0px;
-  border: 2px solid #dcdcdc;
-  border-radius: 8px;
-  font-size: 14px;
-  background-color: #eef4ff;
-  position: relative;
-  top: -7px;
+.add-number-btn:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.limit-warning {
+  font-size: 12px;
+  color: #dc2626;
+  margin-top: 6px;
+}
+
+/* Adjusting SMS Type Text Position */
+.normal-sms-text,
+.flash-sms-text {
+  font-size: 16px;
+  /* Larger text */
+  margin-left: 4px;
+  transform: translateY(-3px);
+  font-weight: 500;
+  color: #1f2937;
+}
+
+/* Scheduler */
+.schedule-row {
+  display: flex;
+  gap: 16px;
+  /* Increased gap */
+  margin-top: 12px;
+  align-items: center;
+}
+
+.schedule-row .form-input {
+  flex: 1;
+  color: #374151;
+  font-family: inherit;
+  margin: 0;
+}
+
+/* Time Picker Custom */
+.time-picker-group {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Better spacing */
+  transform: translateY(-4px);
+}
+
+.time-select {
+  flex: 1 !important;
+  min-width: 80px;
+  /* Increased width */
+  padding: 0 12px !important;
+  text-align: center;
+  appearance: none;
+  height: 54px;
+  /* Match new height */
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  font-size: 16px;
+  /* Larger font */
+}
+
+.time-select:focus {
+  border-color: var(--primary-color, #e14e0e);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(225, 78, 14, 0.15);
+}
+
+.time-period-select {
+  width: 90px;
+  /* Increased width */
+  flex: 0 0 90px !important;
+  margin-left: 0;
+  height: 54px;
+  /* Match new height */
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  padding: 0 8px !important;
+  font-size: 16px;
+  /* Larger font */
+}
+
+.time-period-select:focus {
+  border-color: var(--primary-color, #e14e0e);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(225, 78, 14, 0.15);
+}
+
+.time-separator {
+  font-weight: 700;
+  color: #4b5563;
+  margin: 0 6px;
+  font-size: 20px;
+  margin-top: -2px;
+}
+
+/* Status Message */
+.status-message {
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 10px;
+  background-color: #ecfdf5;
+  color: #047857;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid #d1fae5;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

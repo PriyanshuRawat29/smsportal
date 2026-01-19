@@ -1,0 +1,299 @@
+.login-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f6f8;
+}
+
+.login-right {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Login card */
+.login-card {
+    width: 380px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 36px;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(6px);
+    animation: fadeUp 0.6s ease;
+}
+
+/* Logo */
+.login-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-logo img {
+    max-width: 350px;
+}
+
+/* Title */
+.login-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.login-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* Inputs */
+.login-card input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #eef4ff;
+    transition: all 0.2s ease;
+}
+
+.login-card input:focus {
+    outline: none;
+    background-color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(154, 42, 0, 0.15);
+}
+
+/* ================================================= */
+/* SIMPLE EMAIL / MOBILE RADIO (MATCHES REFERENCE)   */
+/* ================================================= */
+
+
+/* OTP Info */
+.otp-info {
+    text-align: center;
+    color: #4b5563;
+    margin-bottom: 24px;
+    font-size: 14px;
+    background: #f3f4f6;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.fade-in-slide {
+    animation: fadeUp 0.5s ease-out;
+}
+
+/* Button */
+.login-card button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg,
+            var(--primary-color),
+            #7a2100);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.login-card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.login-card button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Forgot password */
+.forgot-password {
+    text-align: right;
+    margin-bottom: 18px;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 13px;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.link-button:hover {
+    text-decoration: underline;
+}
+
+/* Error */
+.login-error {
+    margin-top: 14px;
+    padding: 10px 12px;
+    background-color: rgba(230, 0, 0, 0.08);
+    color: rgb(230, 0, 0);
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+/* Remember me */
+/* Wrapper for 677 + mobile input */
+/* ===== FINAL MOBILE NUMBER FIELD ===== */
+
+/* ===== FINAL OVERRIDE FOR MOBILE INPUT ===== */
+
+
+/* ===== FINAL OVERRIDE FOR MOBILE INPUT ===== */
+
+.mobile-input:focus {
+    outline: none;
+    background-color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(154, 42, 0, 0.15);
+}
+
+/* Signup two-column row */
+.signup-row {
+    display: flex;
+    gap: 14px;
+}
+
+.signup-row input {
+    flex: 1;
+}
+
+
+
+
+/* Animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== INLINE MOBILE NUMBER FIELD ===== */
+
+.mobile-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.mobile-prefix {
+    font-size: 16px;
+
+    color: #111827;
+    min-width: 40px;
+    /* keeps alignment clean */
+
+    position: relative;
+    top: -7px;
+}
+
+.mobile-inline-input {
+    flex: 1;
+    padding: 15px 14px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #eef4ff;
+}
+
+.mobile-inline-input:focus {
+    outline: none;
+    background-color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(154, 42, 0, 0.15);
+}
+
+
+/* ===== MOBILE COUNTRY CODE (SAFE & ISOLATED) ===== */
+
+.mobile-code {
+    flex: 0;
+    /*height: 15px;*/
+    padding: 12px 0px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #eef4ff;
+    position: relative;
+    top: -8.5px;
+}
+
+/* Make input match perfectly */
+/* ===== SHOW PASSWORD (FINAL PROFESSIONAL STYLE) ===== */
+
+.show-password-row {
+    margin-top: -8px;
+    /* pulls it closer to input */
+    margin-bottom: 16px;
+    /* space before Login button */
+}
+
+.show-password-label {
+    display: inline-flex;
+    /* NOT flex (important) */
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #374151;
+    cursor: pointer;
+}
+
+.show-password-label input {
+    width: 14px;
+    height: 14px;
+    margin: 0;
+    /* removes default browser spacing */
+    cursor: pointer;
+}
+
+/* Password Wrapper & Logic */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    padding-right: 40px;
+}
+
+.password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+    z-index: 2;
+    margin-top: -9px;
+}
+
+.password-toggle-icon:hover {
+    color: var(--primary-color);
+}

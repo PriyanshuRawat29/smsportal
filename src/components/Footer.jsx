@@ -2,17 +2,18 @@ function Footer() {
   return (
     <div
       style={{
-        height: 40,
-        backgroundColor: "rgb(0, 176, 202)", // BLUE
+        height: 50,
+        backgroundColor: "#111111", // Dark background
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontSize: 12,
+        fontSize: 13,
         color: "#ffffff",
-        borderTop: "1px solid rgba(0, 0, 0, 0.15)" // subtle top border
+        marginTop: "auto", // Ensure it sits at bottom if used in flex-column
+        width: "100%"
       }}
     >
-      © {new Date().getFullYear()} SMS Gateway Portal. All rights reserved.
+      © {new Date().getFullYear()} Bmobile Solomon Islands.
     </div>
   );
 }

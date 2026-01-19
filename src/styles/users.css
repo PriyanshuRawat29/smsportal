@@ -5,10 +5,14 @@
 
 /* ---------- THEME COLORS ---------- */
 :root {
-  --brand-red: #E60000;       /* RGB 230,0,0 */
-  --brand-grey: #544D4E;      /* RGB 84,77,78 */
-  --brand-blue: #00B0CA;      /* RGB 0,176,202 */
-  --brand-green: #A8B400;     /* RGB 168,180,0 */
+  --brand-red: #E60000;
+  /* RGB 230,0,0 */
+  --brand-grey: #544D4E;
+  /* RGB 84,77,78 */
+  --brand-blue: #00B0CA;
+  /* RGB 0,176,202 */
+  --brand-green: #A8B400;
+  /* RGB 168,180,0 */
   --border-light: #e5e7eb;
   --bg-soft: #f9fafb;
 }
@@ -96,7 +100,7 @@
 
 .users-table tbody tr {
   background: #ffffff;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
 }
 
 .users-table td {
@@ -114,16 +118,45 @@
 }
 
 /* ---------- STATUS ---------- */
-.status-pill {
-  padding: 6px 16px;
-  border-radius: 999px;
-  font-size: 12px;
+/* ---------- STATUS TOGGLE ---------- */
+.status-toggle {
+  display: flex;
+  align-items: center;
+  width: 90px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.status-toggle.active {
+  background-color: #4CAF50;
+  /* Green */
+  justify-content: space-between;
+  padding: 0 4px 0 10px;
+}
+
+.status-toggle.inactive {
+  background-color: #D32F2F;
+  /* Red */
+  justify-content: space-between;
+  padding: 0 10px 0 4px;
+}
+
+.toggle-text {
+  color: white;
+  font-size: 13px;
   font-weight: 500;
 }
 
-.status-pill.active {
-  background: rgba(168, 180, 0, 0.15);
-  color: var(--brand-green);
+.toggle-slider {
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* ---------- MENU ---------- */
@@ -206,11 +239,11 @@
   transition: 0.3s;
 }
 
-.switch input:checked + .slider {
+.switch input:checked+.slider {
   background: var(--brand-green);
 }
 
-.switch input:checked + .slider::before {
+.switch input:checked+.slider::before {
   transform: translateX(22px);
 }
 

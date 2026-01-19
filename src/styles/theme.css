@@ -1,10 +1,14 @@
 :root {
-  --primary-color: rgb(154, 42, 0);     /* Brand Red Violet */
-  --secondary-color: rgb(94, 39, 80);   /* Aubergine */
-
-  --success-color: rgb(168, 180, 0);
-  --error-color: rgb(230, 0, 0);
-
-  --font-family: 'Inter', sans-serif;
-  --border-radius: 6px;
+    --primary-color: rgb(230, 0, 0);
+    /* Red from Guide */
+    --primary-grey: rgb(84, 77, 78);
+    /* Grey from Guide */
+    --primary-blue: rgb(0, 176, 202);
+    /* Blue from Guide */
+    --secondary-color: #1f2937;
+    /* Dark Gray */
+    --font-family: 'Inter', sans-serif;
+    --border-radius: 8px;
+    --background-color: #f3f4f6;
+    --text-color: #111827;
 }
